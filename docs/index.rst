@@ -1,251 +1,93 @@
-Read the Docs: Documentation Simplified
+Getting started with WIRID LAB platform
 =======================================
+## https://sphinx-rtd-theme.readthedocs.io/en/stable/index.html
+Introducción
+------------
+El wirid-lab está diseñado para controlar equipos de radio definido por software (SDR) y dispositivos IoT mediante la reserva de nodos (Experimentos) donde el usuario puede el tipo de aplicación a desplegar en cada uno de ellos.  Para brindar la mejor experiencia de usuario,  el laboratorio cuenta con dos tipos de accesos; uno de ellos mediante terminal SSH o mediante aplicativos basados en la WEB
+A continuación encontrará los pasos necesarios para ingresar al laboratorio WIRID-LAB, realizar el proceso de reserva y acceder a los nodos del laboratorio. 
 
-.. meta::
-   :description lang=en: Automate building, versioning, and hosting of your technical documentation continuously on Read the Docs.
+Acceso y Registro al Laboratorio
+--------------------------------
 
-`Read the Docs`_ simplifies software documentation
-by building, versioning, and hosting of your docs, automatically.
-Think of it as *Continuous Documentation*.
+   Para acceder al la plataforma ingrese a https://wirid-lab.umng.edu.co y realice el proceso de autenticación con una cuenta de gmail dando clic en el botón login. Si usted es estudiante, docente o personal con correo @unimilitar.edu.co puede ingresar automáticamente, el sistema se encargará de registrarlo.  Si no hace parte de la comunidad, haga click en el link Signup para llenar el formulario y esperar la aprobación por parte de los administradores.
 
-Never out of sync |:arrows_counterclockwise:|
-    Whenever you push code to your favorite version control system,
-    whether that is Git, Mercurial, Bazaar, or Subversion,
-    Read the Docs will automatically build your docs
-    so your code and documentation are always up-to-date.
-    Read more about :doc:`/webhooks`.
+   Si entra por primera vez, se recomienda actualizar los datos dirigiéndose al perfil que encuentra en el menú o en el link https://wirid-lab.umng.edu.co/#/home/user/my-profile  
 
-Multiple versions |:card_index_dividers:|
-    Read the Docs can host and build multiple versions of your docs
-    so having a 1.0 version of your docs and a 2.0 version
-    of your docs is as easy as having a separate branch or tag in your version control system.
-    Read more about :doc:`/versions`.
 
-Open Source and User Focused |:heartbeat:|
-    Our code is free and `open source <https://github.com/readthedocs/>`_.
-    :doc:`Our company </about>` is bootstrapped and 100% user focused.
-    |org_brand| hosts documentation for over 100,000 large 
-    and small open source projects,
-    in almost every human and computer language.
-    |com_brand| supports hundreds of organizations with product and internal documentation.
 
-.. _Read the docs: https://readthedocs.org/
+Generar Claves de Acceso al Laboratorio
+---------------------------------------
 
-You can find out more about our all the :doc:`/features` in these pages.
+Linux / Mac / Windows 10
+^^^^^^^^^^^^^^^^^^^^^^
+a) Abrir  terminal / powershell
+b) Ejecutar el siguiente comando:   ``ssh-keygen -C guestuser`` y en las opciones seleccionar todos los valores por defecto oprimiendo la tecla «Enter». El comando se encarga de generar automáticamente la clave pública y privada.  La ruta donde se guardan las claves por defecto son:
+c) Linux:  ``/home/<USER>/.ssh/``
+d) Mac:  ``/Users/<USER>/.ssh/``
+e) Windows: ``C:\Users\<USER>/.ssh/``
 
-First steps
------------
+``<USER>`` corresponde al nombre de usuario del equipo.
 
-Are you new to software documentation
-or are you looking to use your existing docs with Read the Docs?
-Learn about documentation authoring tools such as Sphinx and MkDocs
-to help you create fantastic documentation for your project.
+Windows 7/8/10
+^^^^^^^^^^^^^^^^^^^^^^
+Si no cuenta con una versión reciente de windows debe instalar un cliente SSH y generar las respectivas claves. Para ello realice lo siguiente:
 
-* **Getting started**:
-  :doc:`With Sphinx </intro/getting-started-with-sphinx>` |
-  :doc:`With MkDocs </intro/getting-started-with-mkdocs>` |
-  :doc:`Feature Overview </features>` |
-  :doc:`/choosing-a-site`
+Descargar e instalar el paquete MSI (‘Windows Installer’)  de acuerdo con la versión de su sistema operativo en el link https://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+Una vez instalado, abrir PuTTYgen.exe
+Hacer clic en «Generate» y mover aleatoriamente el cursor dentro del área en blanco para generar la clave.
+Una vez generada la clave, oprimir el botón Save public key para guardar la clave pública; guarde esta clave con el nombre id_rsa.pub. Luego guarde la clave privada oprimiendo el botón Save private key  con el nombre id_rsa.ppk.  El programa generó un texto que corresponde a la clave pública, guarde esta información en un documento de texto para utilizarla en el paso 4.
+Cargar Claves de Acceso a la Plataforma
+Sí generó las claves por medio  del terminal o powershell, ejecute el comando cat ~/.ssh/id_rsa.pub y copie el texto generado.
+Si utilizó PuTTYgen copie el  texto generado de la casilla key, si quiere conocer la clave pública a partir de una clave privada ya almacenada seleccione Load Private Key y cargue la clave privada, automáticamente el programa le mostrará la clave pública correspondiente.
+En el menú seleccione SSH Keys o ingrese al link https://wirid-lab.umng.edu.co/#/home/user/my-keys, haga clic en el botón New SSH Public Key, pegue la cadena de texto y haga clic en crear.
+Usted puede agregar tantas claves públicas como quiera, recuerde que al menos debe contar con una para ingresar a los nodos mediante SSH
 
-* **Importing your existing documentation**:
-  :doc:`Import guide </intro/import-guide>`
+Crear Experimento
+-----------------
+Ingrese en el menú a Experiments -> Create
+Indique la fecha y hora de reserva
+Seleccione el tiempo de la reserva en minutos o en horas.
+Seleccione los nodos a reservar.
+A medida que reserva los nodo puede seleccionar la aplicación a instalar.
+Una vez configurada la reserva haga click en Create Experiment.
 
+
+Si existen otras reservas en el tiempo seleccionado se mostrarán en la tabla inferior la cantidad y nodos reservados.
+
+Acceso al Laboratorio
+^^^^^^^^^^^^^^^^^^^^^^
+Al ingresar en el menú  Experiments -> My Experiments  encontrará una lista de experimentos, cuando el experimento se está ejecutando en el tiempo de la reserva verá una dirección IP asignada a cada nodo.  Dependiendo de la aplicación puede necesitar un token de acceso, para conocerlo haga clic en el icono de la llave. Si desea detener la reserva haga clic en el icono rojo.
+
+
+
+Dependiendo de la aplicación a cargar en los nodos, el usuario tiene las siguientes opciones de conexión:
+
+Una interfaz web jupyter para trabajar con archivos python.
+Una interfaz web SSH para acceder al nodo y ejecutar comandos específicos. Si realizó la instalación de algún paquete, toda la información se perderá dado a que el laboratorio se basa en contenedores Docker.
+Una interfaz web VNC* , esta opción está disponible únicamente para los equipos que ejecutan la aplicación GNU Radio.
+Igualmente, durante el desarrollo del experimento tiene la posibilidad apagar o encender el nodo, tenga en cuenta que al apagar el nodo, está apagando el computador embebido y el dispositivo SDR o IOT.  Si enciende el nodo deberá esperar un tiempo aproximado de 1 minuto mientras se despliega nuevamente la aplicación seleccionada para tener acceso mediante SSH o WEB.
+
+Si desea acceder a estas aplicaciones mediante un terminal SSH desde su computador revise el tutorial avanzado.
+
+Para conocer más acerca de cómo usar  aplicaciones que dispone el laboratorio puede ir a Tutoriales.
+
+ 
+.. Attention::
+   Una vez finalizado el tiempo de su experimento, el sistema cerrará automáticamente cualquier conexión que tenga hacia el nodo.  No se preocupe si dejó abierta alguna sesión en el navegador, toda información generada durante la reserva será eliminada de forma permanente.
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Radio Platform
+
+   pages/radio-platform/intro-radio
 
 .. toctree::
    :maxdepth: 2
-   :hidden:
-   :caption: First steps
-
-   /intro/getting-started-with-sphinx
-   /intro/getting-started-with-mkdocs
-
-   /intro/import-guide
-   /features
-   /choosing-a-site
+   :caption: IoT Platform
+   
+   pages/iot/intro
 
 
-Getting started with Read the Docs
------------------------------------
-
-Learn more about configuring your automated documentation builds
-and some of the core features of Read the Docs.
-
-* **Overview of core features**:
-  :doc:`Incoming webhooks </webhooks>` |
-  :doc:`/custom_domains` |
-  :doc:`/versions` |
-  :doc:`/downloadable-documentation` |
-  :doc:`/hosting` |
-  :doc:`/server-side-search`
-
-* **Connecting with GitHub, BitBucket, or GitLab**:
-  :doc:`Connecting your VCS account </connected-accounts>` | 
-  :doc:`VCS webhooks </webhooks>`
-
-* **Read the Docs build process**:
-  :doc:`Configuration reference </config-file/index>` |
-  :doc:`Build process </builds>` |
-  :doc:`/badges` |
-
-* **Troubleshooting**:
-  :doc:`/support` |
-  :doc:`Frequently asked questions </faq>`
-
-.. toctree::
-   :maxdepth: 1
-   :hidden:
-   :caption: Getting started
-
-   /config-file/index
-   /webhooks
-   /custom_domains
-   /versions
-   /downloadable-documentation
-   /server-side-search
-   /hosting
-
-   /connected-accounts
-
-   /builds
-   /badges
-
-   /support
-   /faq
 
 
-Step-by-step Guides
--------------------
-
-These guides will help walk you through specific use cases
-related to Read the Docs itself, documentation tools like Sphinx and MkDocs
-and how to write successful documentation.
-
-* :doc:`/guides/tools`
-* :doc:`/guides/platform`
-* :doc:`/guides/commercial`
-
-.. toctree::
- :maxdepth: 2
- :hidden:
- :caption: Step-by-step Guides
-
- /guides/tools
- /guides/platform
- /guides/commercial
-
-Advanced features of Read the Docs
-----------------------------------
-
-Read the Docs offers many advanced features and options.
-Learn more about these integrations and how you can get the most
-out of your documentation and Read the Docs.
-
-* **Advanced project configuration**:
-  :doc:`subprojects` |
-  :doc:`Single version docs <single_version>`
-
-* **Multi-language documentation**:
-  :doc:`Translations and localization <localization>`
-
-.. TODO: Move user-defined to Getting started, they are core functionality
-
-* **Redirects**:
-  :doc:`User defined redirects <user-defined-redirects>` |
-  :doc:`Automatic redirects <automatic-redirects>`
-
-* **Versions**
-  :doc:`Automation rules <automation-rules>`
-
-* **Topic specific guides**:
-  :doc:`How-to guides <guides/index>`
-
-* **Extending Read the Docs**:
-  :doc:`REST API <api/index>`
-
-.. toctree::
-   :maxdepth: 2
-   :hidden:
-   :glob:
-   :caption: Advanced features
-
-   subprojects
-   single_version
-
-   localization
-
-   user-defined-redirects
-   automatic-redirects
-
-   automation-rules
-
-
-   api/index
-
-
-The Read the Docs project and organization
-------------------------------------------
-
-Learn about Read the Docs, the project and the company,
-and find out how you can get involved and contribute to the development and success
-of Read the Docs and the larger software documentation ecosystem.
-
-* **Getting involved with Read the Docs**:
-  :doc:`Contributing <contribute>` |
-  :doc:`Development setup </development/standards>` |
-  :doc:`roadmap` |
-  :doc:`Code of conduct <code-of-conduct>`
-
-* **Policies & Process**:
-  :doc:`security` |
-  :doc:`Privacy policy <privacy-policy>` |
-  :doc:`Terms of service <terms-of-service>` |
-  :doc:`DMCA takedown policy <dmca/index>` |
-  :doc:`Policy for abandoned projects <abandoned-projects>` |
-  :doc:`Release notes & changelog <changelog>`
-
-* **The people and philosophy behind Read the Docs**:
-  :doc:`About Us </about>` |
-  :doc:`Team <team>` |
-  :doc:`Open source philosophy <open-source-philosophy>` |
-  :doc:`Our story <story>`
-
-* **Financial and material support**:
-  :doc:`advertising/index` |
-  :doc:`Sponsors <sponsors>`
-
-* **Read the Docs for Business**:
-  :doc:`Support and additional features <commercial/index>`
-
-* **Running your own version of Read the Docs**:
-  :doc:`Private installations <custom_installs/index>`
-
-
-.. toctree::
-   :maxdepth: 1
-   :hidden:
-   :caption: About Read the Docs
-
-   contribute
-   development/index
-   roadmap
-   gsoc
-   code-of-conduct
-
-   security
-   privacy-policy
-   terms-of-service
-   dmca/index
-   abandoned-projects
-   changelog
-
-   about
-   team
-   open-source-philosophy
-   story
-
-   advertising/index
-   sponsors
-
-   commercial/index
-
-   custom_installs/index
